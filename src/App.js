@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { HomePage } from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
-import  Header  from './components/header/header.component';
+import Header from './components/header/header.component';
 import SignPage from './pages/sign/sign.component';
 import {
   BrowserRouter as Router,
@@ -10,18 +10,43 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { auth } from './firebase/firebase.utils';
 
-function App() {
-  return (
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route path='/shop' component={ShopPage} />
-        <Route path='/sign' component={SignPage} />
-      </Switch>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      currentUser: null
+    }
+  }
+
+  authSubscription = null;
+
+  componentDidMount() {
+    this.authSubscription = auth.onAuthStateChanged(user => {
+      this.setState({currentUser: user})
+    })
+
+  }
+
+  componentWillUnmount() {
+    //executes firebse.unsubscribe()
+    this.authSubscription();
+  }
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route path='/shop' component={ShopPage} />
+          <Route path='/signin' component={SignPage} />
+        </Switch>
+      </div >
+    );
+  }
 }
 
 export default App;
