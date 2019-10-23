@@ -10,7 +10,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDoc } from './firebase/firebase.utils';
+
 
 class App extends React.Component {
   constructor() {
@@ -24,8 +25,9 @@ class App extends React.Component {
   authSubscription = null;
 
   componentDidMount() {
-    this.authSubscription = auth.onAuthStateChanged(user => {
-      this.setState({currentUser: user})
+    this.authSubscription = auth.onAuthStateChanged( async user => {
+      createUserProfileDoc(user);
+      // this.setState({currentUser: user})
     })
 
   }
