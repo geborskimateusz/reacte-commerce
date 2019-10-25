@@ -10,15 +10,15 @@ const CheckoutItem = ({item}) => (
             <p>{item.name}</p>
         </div>
         <div className='checkout__item--block'>
-            <span>&lt;</span>
+            <span className='quantity-modifer hoverable'>&lt;</span>
             <p> {item.quantity} </p>
-            <span>&gt;</span>
+            <span className='quantity-modifer hoverable'>&gt;</span>
         </div>
         <div className='checkout__item--block'>
             <p>${item.quantity * item.price}</p>
         </div>
         <div className='checkout__item--block'>
-            <span>&times;</span>
+            <span className='hoverable'>&times;</span>
         </div>
     </div>
 );
