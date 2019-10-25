@@ -1,0 +1,29 @@
+.checkout {
+  width: 70%;
+  margin: 10% auto;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2%;
+    border-bottom: 1px solid gray;
+
+    &--block {
+      text-transform: capitalize;
+      width: 23%;
+
+      &:last-child {
+        width: 8%;
+      }
+    }
+  }
+
+  &__main {
+  }
+
+  &__footer {
+    .total {
+      text-align: end;
+    }
+  }
+}
