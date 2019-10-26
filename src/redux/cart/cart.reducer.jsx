@@ -1,24 +1,9 @@
-import CartActionTypes from "./cart-types";
+import CartActionTypes from "./cart.types";
 import { addItemToCart, removeItemFromCart } from "./cart.utils";
 
 const initialState = {
   hidden: true,
-  cartItems: [
-    {
-      id: 1,
-      name: "Brown Brim",
-      imageUrl: "https://i.ibb.co/ZYW3VTp/brown-brim.png",
-      price: 25,
-      quantity: 4
-    },
-    {
-      id: 2,
-      name: "Brown Brim",
-      imageUrl: "https://i.ibb.co/ZYW3VTp/brown-brim.png",
-      price: 25,
-      quantity: 4
-    }
-  ]
+  cartItems: []
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -50,10 +35,7 @@ const cartReducer = (state = initialState, action) => {
       };
 
     default:
-      return {
-        ...state,
-        
-      };
+      return state;
   }
 };
 
