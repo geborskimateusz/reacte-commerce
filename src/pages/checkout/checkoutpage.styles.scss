@@ -9,7 +9,6 @@
     border-bottom: 1px solid gray;
     font-size: 30px;
 
-
     &--block {
       text-transform: capitalize;
       width: 23%;
@@ -24,8 +23,22 @@
   }
 
   &__footer {
+    border-bottom: 1px solid gray;
+
     .total {
       text-align: end;
     }
   }
+}
+
+.test-warning {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 24px;
+  color: red;
+}
+
+.checkout {
+  margin: 3% auto;
+  text-align: center;
 }
