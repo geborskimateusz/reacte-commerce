@@ -5,10 +5,8 @@ import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignPage from './pages/sign/sign.component';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';

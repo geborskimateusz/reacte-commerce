@@ -1,6 +1,5 @@
 import React from "react";
 import "./directory.styles.scss";
-import { DIRECTORY_SECTIONS } from "./directory.data";
 import MenuItem from "../menu-item/menu-item.component";
 import {connect} from 'react-redux';
 import { createStructuredSelector } from "reselect";
