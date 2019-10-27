@@ -20,7 +20,7 @@ const CollectionPage = ({ collection }) => {
 };
 
 const mapStateToProps = (state, props) => ({
-  collection: selectShopCollectionsCategory(props.match.params.categoryId)(
+  collection: selectShopCollectionsCategory(props.match.params.routeName)(
     state
   )
 });
