@@ -11,4 +11,8 @@ export const CollectionItemsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  & > * {
+    margin: 1%;
+  }
 `;
