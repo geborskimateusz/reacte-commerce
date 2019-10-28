@@ -2,7 +2,7 @@
 
 - [x] Add Redux
 - [x] Add Stripe Payments - Frontend
-- [ ] CSS in JS - styled-components
+- [x] CSS in JS - styled-components
 - [ ] HOC Patterns
 - [ ] Asynchronous Redux
 - [ ] Container Pattern
