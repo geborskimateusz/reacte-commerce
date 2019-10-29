@@ -18,14 +18,20 @@ export const fetchCollectionsFailure = errorMsg => ({
 export const fetchCollectionsStartAsync = () => {
 
     return dispatch => {
+
         const collectionsRef = firestore.collection("collections");
+
         dispatch(fetchCollectionsStart());
 
 
-        collectionsRef.get().then(snapshot => {
-            const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+        collectionsRef
+            .get()
+            .then(snapshot => {
 
-            dispatch(fetchCollectionsSucces(collectionsMap))
-        }).catch(err => dispatch(fetchCollectionsFailure(err)));
+                const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+
+                dispatch(fetchCollectionsSucces(collectionsMap))
+
+            }).catch(err => dispatch(fetchCollectionsFailure(err)));
     }
 }
