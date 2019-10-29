@@ -12,6 +12,18 @@ const config = {
     appId: "1:933576098:web:5156290aaee585dafd86fb"
 };
 
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+    const collectionRef = firestore.collection(collectionKey);
+
+    const batch = firestore.batch();
+    objectsToAdd.forEach(obj => {
+        const newDocRef = collectionRef.doc();
+        batch.set(newDocRef, obj)
+    });
+
+    return await batch.commit();
+}
+
 export const createUserProfileDoc = async (user, data) => {
     if (!user) return;
 
