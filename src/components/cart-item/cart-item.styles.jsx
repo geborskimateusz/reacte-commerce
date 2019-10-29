@@ -1,4 +1,4 @@
-import styled, { scss } from "styled-components";
+import styled from "styled-components";
 
 export const CartItemContainer = styled.div`
   width: 100%;
