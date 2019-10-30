@@ -23,7 +23,6 @@ export const fetchCollectionsStartAsync = () => {
 
         dispatch(fetchCollectionsStart());
 
-
         collectionsRef
             .get()
             .then(snapshot => {
