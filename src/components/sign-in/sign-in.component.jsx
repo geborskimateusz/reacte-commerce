@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const SignIn = ({ onGoogleSignIn, onEmailAndPasswordSignIn }) => {
 
-  const [state, setState] = useState({
+  const [userCredentials, setCredentials] = useState({
     email: "",
     password: ""
   });
@@ -18,7 +18,7 @@ const SignIn = ({ onGoogleSignIn, onEmailAndPasswordSignIn }) => {
   const handleChange = e => {
     const { value, name } = e.target;
 
-    setState( prevState => ({
+    setCredentials( prevState => ({
         ...prevState,
         [name] : value
     }))
@@ -26,7 +26,7 @@ const SignIn = ({ onGoogleSignIn, onEmailAndPasswordSignIn }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const { email, password } = state;
+    const { email, password } = userCredentials;
 
     onEmailAndPasswordSignIn(email, password);
   };
@@ -40,7 +40,7 @@ const SignIn = ({ onGoogleSignIn, onEmailAndPasswordSignIn }) => {
         <FormInput
           name="email"
           type="email"
-          value={state.email}
+          value={userCredentials.email}
           handleChange={handleChange}
           required
           label="Email"
@@ -49,7 +49,7 @@ const SignIn = ({ onGoogleSignIn, onEmailAndPasswordSignIn }) => {
         <FormInput
           name="password"
           type="password"
-          value={state.password}
+          value={userCredentials.password}
           handleChange={handleChange}
           required
           label="Password"
