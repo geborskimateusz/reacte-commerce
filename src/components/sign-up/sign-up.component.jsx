@@ -13,10 +13,12 @@ const SignUp = ({ signUp }) => {
     confirmPassword: ""
   });
 
+  const { displayName, email, password, confirmPassword } = userCrendentials;
+
+
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const { displayName, email, password, confirmPassword } = userCrendentials;
 
     if (password !== confirmPassword) {
       alert("Password does not match.");
@@ -43,7 +45,7 @@ const SignUp = ({ signUp }) => {
         <FormImput
           type="text"
           name="displayName"
-          value={userCrendentials.displayName}
+          value={displayName}
           onChange={handleChange}
           label="Display Name"
           required
@@ -52,7 +54,7 @@ const SignUp = ({ signUp }) => {
         <FormImput
           type="email"
           name="email"
-          value={userCrendentials.email}
+          value={email}
           onChange={handleChange}
           label="Email"
           required
@@ -61,7 +63,7 @@ const SignUp = ({ signUp }) => {
         <FormImput
           type="password"
           name="password"
-          value={userCrendentials.password}
+          value={password}
           onChange={handleChange}
           label="Password"
           required
@@ -70,7 +72,7 @@ const SignUp = ({ signUp }) => {
         <FormImput
           type="password"
           name="confirmPassword"
-          value={userCrendentials.confirmPassword}
+          value={confirmPassword}
           onChange={handleChange}
           label="Confirm password"
           required
