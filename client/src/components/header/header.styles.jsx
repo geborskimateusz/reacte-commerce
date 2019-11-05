@@ -10,7 +10,6 @@ const OptionContainerStyles = css`
     &:hover {
       opacity: 0.8;
     }
-
 `;
 
 export const HeaderContainer = styled.div`
@@ -20,6 +19,8 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+
+ 
 `;
 
 export const LogoContainer = styled(Link)`
@@ -34,6 +35,11 @@ export const OptionsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  @media screen and (max-width: 400px) {
+      width: 100%;
+  }
+
 `;
 
 export const OptionLink = styled(Link)`

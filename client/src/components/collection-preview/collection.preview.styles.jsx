@@ -10,9 +10,17 @@ export const CollectionPreviewContainer = styled.div`
     margin-bottom: 25px;
     margin-left: 2%;
   }
+
+ 
+
+
 `;
 
 export const PreviewContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
+
+  @media screen and (max-width: 650px) {
+    flex-wrap: wrap;
+  }
 `;

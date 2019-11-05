@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import Button from '../button/button.component';
+import styled from "styled-components";
+import Button from "../button/button.component";
 
 export const CollectionItemContainer = styled.div`
-  width: 22vw;
+  width: 20vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -16,6 +16,10 @@ export const CollectionItemContainer = styled.div`
       opacity: 0.85;
       display: flex;
     }
+  }
+
+  @media screen and (max-width: 650px) {
+      flex 0 0 50%;
   }
 `;
 
@@ -42,11 +46,20 @@ export const CollectionFooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+
+  @media screen and (max-width: 650px) {
+    justify-content: center;
+    margin-bottom: 5%;
+  }
 `;
 
 export const NameContainer = styled.span`
   width: 90%;
   margin-bottom: 15px;
+
+  @media screen and (max-width: 650px) {
+    width: 50%;
+  }
 `;
 
 export const PriceContainer = styled.span`

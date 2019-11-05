@@ -15,4 +15,11 @@ export const CollectionItemsContainer = styled.div`
   & > * {
     margin: 1%;
   }
+
+  @media screen and (max-width: 800px) {
+    & > * {
+      margin-bottom: 5%;
+      flex: 1 1 50%;
+    }
+  }
 `;
