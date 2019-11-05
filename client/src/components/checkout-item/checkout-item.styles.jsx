@@ -5,7 +5,13 @@ export const QuantitySpan = styled.span`
 
   .value {
     margin: 0 10px;
+
+    @media screen and (max-width: 500px) {
+      margin: 0 5px;
+    }
   }
+
+  
 `;
 export const CheckoutItemContainer = styled.div`
   width: 100%;
@@ -19,6 +25,14 @@ export const CheckoutItemContainer = styled.div`
   .name,
   ${QuantitySpan}, .price {
     width: 23%;
+  }
+
+  @media screen and (max-width: 900px) {
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: 10px;
   }
 `;
 
@@ -35,6 +49,14 @@ export const ImageContainer = styled.div`
 
 export const ArrowContainer = styled.span`
   cursor: pointer;
+
+  @media screen and (max-width: 900px) {
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: 10px;
+  }
 `;
 
 export const RemoveButton = styled.div`
