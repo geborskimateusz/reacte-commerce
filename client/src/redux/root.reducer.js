@@ -7,10 +7,11 @@ import cartReducer from './cart/cart.reducer';
 import directoryReducer from './directory/directory.reducer.jsx';
 import shopReducer from './shop/shop.reducer';
 
+// whitelist: ['cart']
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['cart']
+  
 };
 
 const rootReducer = combineReducers({

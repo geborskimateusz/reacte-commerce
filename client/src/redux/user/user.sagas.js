@@ -3,6 +3,7 @@ import UserActionTypes from './user.types';
 import { googleProvider, auth, createUserProfileDoc, getCurrentUser } from '../../firebase/firebase.utils';
 import { signInSucces, signInFailure, signUpSucces, signOutSucces, signOutFailure, signUpFailure } from './user.actions';
 import { all, call } from 'redux-saga/effects';
+import CartActionTypes from '../cart/cart.types';
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
     try {
@@ -110,6 +111,8 @@ export function* signInAfterSignUp({ payload: { user, additionalData } }) {
 export function* onSingUpSucces() {
     yield takeLatest(UserActionTypes.SIGN_UP_SUCCES, signInAfterSignUp)
 }
+
+
 
 export function* userSagas() {
     yield all([
