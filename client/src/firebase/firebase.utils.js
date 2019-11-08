@@ -46,62 +46,30 @@ export const createUserProfileDoc = async (user, data) => {
 }
 
 export const fetchCartDoc = async (cartId) => {
+
     const cartsRef = firestore.doc(`carts/${cartId}`)
+    const snapshot = await cartsRef.get();
 
-    return await cartsRef.get()
-        .then(cartDoc => {
-            const cartData = cartDoc.data()
+    if (snapshot.exists) {
+        const cartData = snapshot.data();
 
-            return Object.entries(cartData.collections);
-        })
-        .then(collectionEntries => Promise.all(
-            collectionEntries.map(async ([collectionId, items]) => {
-                console.log('iterating over ' + collectionId + 'items ')
-                console.log(items)
+        const collectionEntries = Object.entries(cartData.collections);
 
-                const collectionRef = firestore.doc(`collections/${collectionId}`)
+        const items = await Promise.all(
+            collectionEntries.map(async ([collectionId, cartItems]) => {
 
+                const collectionRef = firestore.doc(`collections/${collectionId}`);
                 const collectionDoc = await collectionRef.get();
-               
-                return items.map(item => 
-                    collectionDoc.data().items.filter(fetchedItem => {
-                        console.log(fetchedItem.id,item.itemId)
-                        return fetchedItem.id == item.itemId;
-                    }))
-            })
-        ))
+                const collectionItems = collectionDoc.data().items;
 
-
-
-
-
-
-    // cartsRef.get().then(cartDoc => {
-    //     const cartData = cartDoc.data()
-
-    //     return Object.entries(cartData.collections);
-    // })
-    //     .then(collectionEntries => {
-    //         collectionEntries.map(([collectionId, items]) => {
-
-    //             const collectionRef = firestore.doc(`collections/${collectionId}`)
-
-    //             collectionRef.get().then(collectionDoc => {
-    //                 return items.map(item => {
-    //                     return collectionDoc.data().items[item.itemId];
-    //                 })
-    //             }).then(items => {
-
-    //                 console.log(3, items)
-    //                 return items
-    //             })
-    //         })
-    //     })
-    //     .then(data => {
-    //         console.log(2, data)
-    //         return data;
-    //     })
-
+                return cartItems.map(item => collectionItems.filter(fetchedItem => {
+                    if (fetchedItem.id == item.itemId) {
+                        return itemWithQuantity(fetchedItem, item);
+                    }
+                }));
+            }));
+        return items.flat(Infinity);
+    }
 }
 
 
@@ -132,6 +100,10 @@ export const getCurrentUser = () => {
     })
 }
 
+function itemWithQuantity(fetchedItem, item) {
+    fetchedItem.quantity = parseInt(item.quantity, 10);
+    return fetchedItem;
+}
 
 firebase.initializeApp(config);
 
@@ -143,3 +115,4 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
+

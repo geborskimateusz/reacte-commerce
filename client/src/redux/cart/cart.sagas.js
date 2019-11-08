@@ -1,6 +1,6 @@
 import { all, call, takeLatest, put } from 'redux-saga/effects';
 import UserActionTypes from '../user/user.types';
-import { clearCart } from './cart.actions.js';
+import { clearCart, setCartItems } from './cart.actions.js';
 import { fetchCartDoc } from '../../firebase/firebase.utils';
 export function* clearCartItems() {
     yield put(clearCart());
@@ -11,9 +11,10 @@ export function* onSignOutSuccess() {
 }
 
 export function* fetchCartItems({ payload: { id } }) {
-    Promise.resolve(fetchCartDoc(id))
-    .then(data => console.log(data))
-    
+    const cartItems = yield call(fetchCartDoc, id);
+    if (cartItems) {
+        yield put(setCartItems(cartItems));
+    }
 }
 
 export function* onSingUpSucces() {
