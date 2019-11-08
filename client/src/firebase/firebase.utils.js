@@ -45,31 +45,32 @@ export const createUserProfileDoc = async (user, data) => {
     return userRef;
 }
 
-export const fetchCartDoc = async (cartId) => {
+export const fetchCartDoc = async () => {
 
-    const cartsRef = firestore.doc(`carts/${cartId}`)
+    const id = auth.currentUser.uid;
+
+    const cartsRef = firestore.doc(`carts/${id}`)
     const snapshot = await cartsRef.get();
 
     if (snapshot.exists) {
         const cartData = snapshot.data();
-
-        const collectionEntries = Object.entries(cartData.collections);
-
-        const items = await Promise.all(
-            collectionEntries.map(async ([collectionId, cartItems]) => {
-
-                const collectionRef = firestore.doc(`collections/${collectionId}`);
-                const collectionDoc = await collectionRef.get();
-                const collectionItems = collectionDoc.data().items;
-
-                return cartItems.map(item => collectionItems.filter(fetchedItem => {
-                    if (fetchedItem.id == item.itemId) {
-                        return itemWithQuantity(fetchedItem, item);
-                    }
-                }));
-            }));
-        return items.flat(Infinity);
+        return cartData.cartItems;
     }
+}
+
+export const saveOrUpdateCartDoc = async (cartItems) => {
+    console.log('in save or update')
+    const id = auth.currentUser.uid;
+
+    const cartsRef = firestore.doc(`carts/${id}`)
+
+    try {
+        console.log(cartItems)
+        await cartsRef.set({ cartItems })
+    } catch (err) {
+        console.error('Error when saving cartItems.', err);
+    }
+
 }
 
 
