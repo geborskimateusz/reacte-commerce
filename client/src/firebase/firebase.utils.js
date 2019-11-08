@@ -66,10 +66,10 @@ export const saveOrUpdateCartDoc = async (cartItems) => {
 
     try {
         console.log(cartItems)
-        await cartsRef.set({ cartItems })
+        await cartsRef.update({ cartItems })
     } catch (err) {
         console.error('Error when saving cartItems.', err);
-    }
+    }   
 
 }
 
